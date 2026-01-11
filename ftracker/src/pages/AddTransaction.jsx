@@ -10,7 +10,9 @@ function AddTransaction() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:5000/api/transactions", {
+    await axios.post("https://ftracker-ecru.vercel.app/api/transactions",
+        
+        {
       title,
       amount: Number(amount),
       type,

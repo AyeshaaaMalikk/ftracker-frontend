@@ -8,13 +8,13 @@ function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/transactions")
+      .get("https://ftracker-ecru.vercel.app/api/transactions")
       .then((res) => setTransactions(res.data))
       .catch((err) => console.log(err));
   }, []);
  
   const deleteTransaction = async (id) => {
-  await axios.delete(`http://localhost:5000/api/transactions/${id}`);
+  await axios.delete(`https://ftracker-ecru.vercel.app/api/transactions/${id}`);
   setTransactions((prev) => prev.filter((t) => t._id !== id));
 
 };

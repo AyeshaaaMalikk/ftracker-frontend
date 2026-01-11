@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://ftracker-ecru.vercel.app/api/transactions",
 });
 
 export const getTransactions = () => API.get("/transactions");

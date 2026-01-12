@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addTransaction } from "../services/api";
+import { addTransaction } from "..api/services/api";
 
 function AddTransaction() {
   const [title, setTitle] = useState("");
@@ -10,70 +10,29 @@ function AddTransaction() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      await addTransaction({
-        title,
-        amount: Number(amount),
-        type,
-        category,
-      });
+    await addTransaction({
+      title,
+      amount: Number(amount),
+      type,
+      category,
+    });
 
-      setTitle("");
-      setAmount("");
-      setCategory("");
-      window.location.reload();
-    } catch (err) {
-      console.error("Add transaction error:", err);
-      alert("Transaction add nahi ho rahi");
-    }
+    setTitle("");
+    setAmount("");
+    setCategory("");
+    window.location.reload();
   };
 
   return (
-    <form
-      onSubmit={submitHandler}
-      className="max-w-3xl mx-auto mt-6 bg-white p-6 rounded-xl shadow"
-    >
-      <h3 className="text-xl font-bold mb-4">Add Transaction</h3>
-
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        className="w-full border p-2 mb-3"
-        required
-      />
-
-      <input
-        type="number"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        placeholder="Amount"
-        className="w-full border p-2 mb-3"
-        required
-      />
-
-      <select
-        value={type}
-        onChange={(e) => setType(e.target.value)}
-        className="w-full border p-2 mb-3"
-      >
+    <form onSubmit={submitHandler}>
+      <input value={title} onChange={(e)=>setTitle(e.target.value)} />
+      <input type="number" value={amount} onChange={(e)=>setAmount(e.target.value)} />
+      <select value={type} onChange={(e)=>setType(e.target.value)}>
         <option value="income">Income</option>
         <option value="expense">Expense</option>
       </select>
-
-      <input
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        placeholder="Category"
-        className="w-full border p-2 mb-3"
-      />
-
-      <button
-        type="submit"
-        className="w-full bg-black text-white py-2 rounded"
-      >
-        Add Transaction
-      </button>
+      <input value={category} onChange={(e)=>setCategory(e.target.value)} />
+      <button type="submit">Add</button>
     </form>
   );
 }

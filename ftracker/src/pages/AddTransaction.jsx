@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { addTransaction } from "../services/api";
 
 function AddTransaction() {
   const [title, setTitle] = useState("");
@@ -10,19 +10,22 @@ function AddTransaction() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    await axios.post("https://ftracker-ecru.vercel.app/api/transactions",
-        
-        {
-      title,
-      amount: Number(amount),
-      type,
-      category,
-    });
+    try {
+      await addTransaction({
+        title,
+        amount: Number(amount),
+        type,
+        category,
+      });
 
-    setTitle("");
-    setAmount("");
-    setCategory("");
-    window.location.reload(); // refresh list
+      setTitle("");
+      setAmount("");
+      setCategory("");
+      window.location.reload();
+    } catch (err) {
+      console.error("Add transaction error:", err);
+      alert("Transaction add nahi ho rahi");
+    }
   };
 
   return (

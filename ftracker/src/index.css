@@ -2,14 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: linear-gradient(135deg, #bcc0ec);
-
-
-
-  background-color: #0f172a; /* dark slate */
-  color: #000000;            /* light text */
-
-
-}
-
